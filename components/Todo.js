@@ -4,20 +4,6 @@ class Todo {
     this._todoTemplate = document.querySelector(selector);
   }
 
-  _setEventListeners() {
-    this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
-    this._todoCheckboxEl = this._todoElement.querySelector(".todo__completed");
-
-    this._todoDeleteBtn.addEventListener("click", () => {
-      this._todoElement.remove();
-    });
-
-    this._todoCheckboxEl.addEventListener("change", () => {
-      this._data.completed = this._todoCheckboxEl.checked;
-      console.log(this._data.completed);
-    });
-  }
-
   _generateCheckboxEl() {
     this._todoCheckboxEl = this._todoElement.querySelector(".todo__completed");
     this._todoLabel = this._todoElement.querySelector(".todo__label");
@@ -25,6 +11,17 @@ class Todo {
     this._todoCheckboxEl.checked = this._data.completed ?? false;
     this._todoCheckboxEl.id = `todo-${this._data.id}`;
     this._todoLabel.setAttribute("for", `todo-${this._data.id}`);
+  }
+
+  _setEventListeners() {
+    this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
+    this._todoDeleteBtn.addEventListener("click", () => {
+      this._todoElement.remove();
+    });
+
+    this._todoCheckboxEl.addEventListener("change", () => {
+      this._data.completed = this._todoCheckboxEl.checked;
+    });
   }
 
   getView() {
